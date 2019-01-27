@@ -11,6 +11,8 @@ TagManager:
   - Dialog
   - Dialog_1
   - Dialog_2
+  - Interactable
+  - Hag
   layers:
   - Default
   - TransparentFX
