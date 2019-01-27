@@ -22,6 +22,7 @@ TagManager:
   - Cage
   - Dialog_3
   - Begining_Dialog
+  - Barrier_Down
   layers:
   - Default
   - TransparentFX

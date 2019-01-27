@@ -37,7 +37,7 @@ public class LevelTwoPlayer : MonoBehaviour
             new DialogSnippet("???", "Any spirt can."),
             new DialogSnippet("Kid", "Spirit?"),
             new DialogSnippet("Spirit", "Yep!"),
-            new DialogSnippet("Spirit", "You've found you're way to one the homes of the spirits."),
+            new DialogSnippet("Spirit", "You've found your way to one the homes of the spirits."),
             new DialogSnippet("Spirit", "The Whispering Woods."),
             new DialogSnippet("Kid", "I'm sorry spirit."),
             new DialogSnippet("Kid", "But I shouldn't be visitning someone elses home now."),
@@ -59,6 +59,21 @@ public class LevelTwoPlayer : MonoBehaviour
         {
             var levelChanger = GameObject.FindGameObjectWithTag("LevelChanger");
             levelChanger.GetComponent<LevelChanger>().FadeToLevel(3);
+        }else if(other.gameObject.tag == "Barrier_Down")
+        {            
+            Destroy(other.gameObject);
+
+            DialogSnippet[] snippets ={
+                    new DialogSnippet("Wisp", "How terrible!"),
+                    new DialogSnippet("Wisp", "Although this may be fortunate for you."),
+                    new DialogSnippet("Kid", "Why would that be?"),
+                    new DialogSnippet("Wisp", "There is a lantern that can grant what the holder deasires."),
+                    new DialogSnippet("Wisp", "However, it only works if it has enough power within."),
+                    new DialogSnippet("Wisp", "If you capture that fire spirit it may reveal the path to lead you home."),
+                    new DialogSnippet("Kid", "Let's go find it then!")
+            };
+            dialog.StartDialog(snippets);
+
         }
     }
 
@@ -117,7 +132,7 @@ public class LevelTwoPlayer : MonoBehaviour
                         if (state == 4)
                         {
                             snippets = new DialogSnippet[]{
-                                new DialogSnippet("Boy", "*Plays Flute*"),
+                                new DialogSnippet("Kid", "*Plays Flute*"),
                                 new DialogSnippet("Frog", "Ribbit Ribbit")
                             };
 
@@ -254,7 +269,7 @@ public class LevelTwoPlayer : MonoBehaviour
             case 1:
                 snippets = new DialogSnippet[]{
                     new DialogSnippet("Eyeball", "I've lost my pet frog and I'm not moving until I get him back."),
-                    new DialogSnippet("Boy", "I'll get him back for you."),
+                    new DialogSnippet("Kid", "I'll get him back for you."),
                     new DialogSnippet("Eyeball", "You'd do that? He's shy, but will come to you if you play music.")
                 };
                 dialog.StartDialog(snippets);
@@ -263,7 +278,7 @@ public class LevelTwoPlayer : MonoBehaviour
             case 2:
                 snippets = new DialogSnippet[]{
                     new DialogSnippet("Eyeball", "Do you have my frog yet?"),
-                    new DialogSnippet("Boy", "Not yet."),
+                    new DialogSnippet("Kid", "Not yet."),
                     new DialogSnippet("Eyeball", "Well hurry up would you?")
                 };
                 dialog.StartDialog(snippets);
@@ -271,7 +286,7 @@ public class LevelTwoPlayer : MonoBehaviour
             case 3:
                 snippets = new DialogSnippet[]{
                     new DialogSnippet("Eyeball", "Do you have my frog yet?"),
-                    new DialogSnippet("Boy", "Not yet."),
+                    new DialogSnippet("Kid", "Not yet."),
                     new DialogSnippet("Eyeball", "Well hurry up would you?")
                 };
                 dialog.StartDialog(snippets);
@@ -279,7 +294,7 @@ public class LevelTwoPlayer : MonoBehaviour
             case 4:
                 snippets = new DialogSnippet[]{
                     new DialogSnippet("Eyeball", "Do you have my frog yet?"),
-                    new DialogSnippet("Boy", "Not yet."),
+                    new DialogSnippet("Kid", "Not yet."),
                     new DialogSnippet("Eyeball", "Well hurry up would you?")
                 };
                 dialog.StartDialog(snippets);
@@ -288,7 +303,9 @@ public class LevelTwoPlayer : MonoBehaviour
                 snippets = new DialogSnippet[]{
                     new DialogSnippet("Eyeball", "You found my frog! Thank you!"),
                     new DialogSnippet("Eyeball", "Oh no! Fire Spirit!"),
-                    new DialogSnippet("Fire Spirit", "Bwahahahahahahahahahahahahahahahahahaha")
+                    new DialogSnippet("Fire Spirit", "Bwahahahahahahahahahahahahahahahahahaha"),
+                    new DialogSnippet("Fire Spirit", "Your power is now mine!"),
+                    new DialogSnippet("Fire Spirit", "Mwahahaha!")
                 };
                 state = 6;
 
@@ -296,6 +313,7 @@ public class LevelTwoPlayer : MonoBehaviour
                 GameObject.Instantiate(firspirt, new Vector3(-20, 11, 27), Quaternion.Euler(0, 145, 0));
                 dialog.StartDialog(snippets);
                 removeEyeSore = true;
+
                 break;
             default:
                 dialog.StartDialog(snippets);
