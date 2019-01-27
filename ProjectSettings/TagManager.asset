@@ -8,6 +8,9 @@ TagManager:
   - Wisp
   - End
   - LevelChanger
+  - Dialog
+  - Dialog_1
+  - Dialog_2
   layers:
   - Default
   - TransparentFX

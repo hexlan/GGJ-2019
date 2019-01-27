@@ -7,24 +7,32 @@ public class MouseManager : MonoBehaviour
 {
 
     public LayerMask triggers;
-
     public EventVector3 OnClickEnvironment;
+    private bool disabled = false;
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 50))
+        if (!disabled)
         {
-            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Clickable"))
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 50))
             {
-                if (Input.GetMouseButtonDown(0))
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Clickable"))
                 {
-                    OnClickEnvironment.Invoke(hit.point);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        OnClickEnvironment.Invoke(hit.point);
+                    }
                 }
             }
         }
+    }
+
+    public void DisableInput(bool value)
+    {
+        disabled = value;
     }
 }
 
