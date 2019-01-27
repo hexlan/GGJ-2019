@@ -26,18 +26,6 @@ public class MouseManager : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 50))
             {
-                if (hit.collider.gameObject.tag == "Lantern")
-                {
-                    hit.collider.gameObject.transform.Find("Light").GetComponent<Light>().intensity = 3;
-                }
-                else
-                {
-                    var lantern = GameObject.FindGameObjectWithTag("Lantern");
-                    if (lantern != null) {
-                        lantern.transform.Find("Light").GetComponent<Light>().intensity = 0.5f;
-                    }
-                }
-
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Clickable"))
                 {
                     if (Input.GetMouseButtonDown(0))

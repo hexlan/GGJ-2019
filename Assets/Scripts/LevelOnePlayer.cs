@@ -23,8 +23,8 @@ public class LevelOnePlayer : MonoBehaviour
 
             DialogSnippet[] dialog =
             {
-                new DialogSnippet("Kid", "Oooh, mabey I can find a cool bug tonight!"),
-                new DialogSnippet("Kid", "I should look arround!")
+                new DialogSnippet("Kid", "Oooh, maybe I can find a cool bug tonight!"),
+                new DialogSnippet("Kid", "I should look around!")
             };
 
             manager.StartDialog(dialog);
@@ -48,11 +48,11 @@ public class LevelOnePlayer : MonoBehaviour
 
             DialogSnippet[] dialog =
             {
-                new DialogSnippet("Kid", "What's That!?"),
+                new DialogSnippet("Kid", "What's that!?"),
                 new DialogSnippet("Kid", "Wow!"),
                 new DialogSnippet("Kid", "Is that a firefly?"),
                 new DialogSnippet("Kid", "I've never seen one before!"),
-                new DialogSnippet("Kid", "Mabey I can catch it.")
+                new DialogSnippet("Kid", "Maybe I can catch it.")
             };
 
             transform.LookAt(GameObject.FindGameObjectWithTag("Wisp").transform);
@@ -66,8 +66,7 @@ public class LevelOnePlayer : MonoBehaviour
             DialogSnippet[] dialog =
             {
                 new DialogSnippet("Kid", "It sure is quick. "),
-                new DialogSnippet("Kid", "Is it really an insect? "),
-                new DialogSnippet("Kid", "Can't let it get away now!")
+                new DialogSnippet("Kid", "I can't let it get away now!")
             };
 
             manager.StartDialog(dialog);

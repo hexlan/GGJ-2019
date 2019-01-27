@@ -22,36 +22,7 @@ public class LevelTwoPlayer : MonoBehaviour
     bool removeEyeSore = false;
 
     bool frogIsOnBeach = true;
-
-    private void Start()
-    {
-        DialogSnippet[] snippets = {
-            new DialogSnippet("Kid", "Finally caught up to you!"),
-            new DialogSnippet("Kid", "..."),
-            new DialogSnippet("Kid", "Wait wheres the path?"),
-            new DialogSnippet("Kid", "Oh no! I'm lost!"),
-            new DialogSnippet("???", "No need to worry."),
-            new DialogSnippet("Kid", "!"),
-            new DialogSnippet("Kid", "You can speeak?!"),
-            new DialogSnippet("???", "Of course!"),
-            new DialogSnippet("???", "Any spirt can."),
-            new DialogSnippet("Kid", "Spirit?"),
-            new DialogSnippet("Spirit", "Yep!"),
-            new DialogSnippet("Spirit", "You've found your way to one the homes of the spirits."),
-            new DialogSnippet("Spirit", "The Whispering Woods."),
-            new DialogSnippet("Kid", "I'm sorry spirit."),
-            new DialogSnippet("Kid", "But I shouldn't be visitning someone elses home now."),
-            new DialogSnippet("Kid", "I wasn't supposed to leave my home!"),
-            new DialogSnippet("Spirit", "Well mabey I can help."),
-            new DialogSnippet("Spirit", "You can't leave the same way you came."),
-            new DialogSnippet("Spirit", "However, I think I know a spirit that can find the path you need."),
-            new DialogSnippet("Spirit", "Lets go find the Hag!"),
-            new DialogSnippet("Spirit", "Oh!"),
-            new DialogSnippet("Wisp", "By the way I'm Wisp!")
-        };
-
-        dialog.StartDialog(snippets);
-    }
+    bool start = true;
 
     void OnTriggerEnter(Collider other)
     {
@@ -59,17 +30,17 @@ public class LevelTwoPlayer : MonoBehaviour
         {
             var levelChanger = GameObject.FindGameObjectWithTag("LevelChanger");
             levelChanger.GetComponent<LevelChanger>().FadeToLevel(3);
-        }else if(other.gameObject.tag == "Barrier_Down")
-        {            
+        }
+        else if (other.gameObject.tag == "Barrier_Down")
+        {
             Destroy(other.gameObject);
 
             DialogSnippet[] snippets ={
                     new DialogSnippet("Wisp", "How terrible!"),
                     new DialogSnippet("Wisp", "Although this may be fortunate for you."),
-                    new DialogSnippet("Kid", "Why would that be?"),
-                    new DialogSnippet("Wisp", "There is a lantern that can grant what the holder deasires."),
+                    new DialogSnippet("Kid", "Why's that?"),
+                    new DialogSnippet("Wisp", "There is a lantern that can grant what the holder desires."),
                     new DialogSnippet("Wisp", "However, it only works if it has enough power within."),
-                    new DialogSnippet("Wisp", "If you capture that fire spirit it may reveal the path to lead you home."),
                     new DialogSnippet("Kid", "Let's go find it then!")
             };
             dialog.StartDialog(snippets);
@@ -77,10 +48,39 @@ public class LevelTwoPlayer : MonoBehaviour
         }
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if(removeEyeSore && !mouse.disabled)
+        if (start)
+        {
+            DialogSnippet[] snippets = {
+            new DialogSnippet("Kid", "Finally caught up to you!"),
+            new DialogSnippet("Kid", "..."),
+            new DialogSnippet("Kid", "Wait where's the path?"),
+            new DialogSnippet("Kid", "Oh no! I'm lost!"),
+            new DialogSnippet("???", "No need to worry."),
+            new DialogSnippet("Kid", "You can speak?!"),
+            new DialogSnippet("???", "Of course!"),
+            new DialogSnippet("???", "Most spirits can."),
+            new DialogSnippet("Kid", "Spirit?"),
+            new DialogSnippet("Spirit", "Yep!"),
+            new DialogSnippet("Spirit", "You've stumbled into the spirit world."),
+            new DialogSnippet("Kid", "I'm sorry spirit."),
+            new DialogSnippet("Kid", "But I can't be visiting right now."),
+            new DialogSnippet("Kid", "I wasn't supposed to leave my home!"),
+            new DialogSnippet("Spirit", "Well maybe I can help."),
+            new DialogSnippet("Spirit", "You can't leave the same way you came."),
+            new DialogSnippet("Spirit", "However, I know a spirit that should be able to help."),
+            new DialogSnippet("Spirit", "Lets go find the Hag!"),
+            new DialogSnippet("Spirit", "Oh!"),
+            new DialogSnippet("Wisp", "By the way I'm Wisp!")
+        };
+
+            dialog.StartDialog(snippets);
+            start = false;
+        }
+
+        if (removeEyeSore && !mouse.disabled)
         {
             Destroy(GameObject.FindGameObjectWithTag("Eyeball"));
             Destroy(GameObject.FindGameObjectWithTag("FireSpirit"));
@@ -131,6 +131,7 @@ public class LevelTwoPlayer : MonoBehaviour
                         DialogSnippet[] snippets = new DialogSnippet[] { new DialogSnippet("Frog", "Ribbit") };
                         if (state == 4)
                         {
+                            GameObject.FindGameObjectWithTag("Flute").GetComponent<AudioSource>().Play();
                             snippets = new DialogSnippet[]{
                                 new DialogSnippet("Kid", "*Plays Flute*"),
                                 new DialogSnippet("Frog", "Ribbit Ribbit")
@@ -159,37 +160,38 @@ public class LevelTwoPlayer : MonoBehaviour
         {
             case 0:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Wisp", "Speak with the hag.")
+                    new DialogSnippet("Wisp", "You should speak to the Hag, she might know what to do.")
                 };
                 break;
             case 1:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Wisp", "Head north.")
+                    new DialogSnippet("Wisp", "The Hag told us to head north.")
                 };
                 break;
             case 2:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Wisp", "Retrieve the eyeball's frog.")
+                    new DialogSnippet("Wisp", "Doesn't seem like the Eyeball is going to move without his frog."),
+                    new DialogSnippet("Wisp", "We should see if we can catch it.")
                 };
                 break;
             case 3:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Wisp", "We may need to play some music, check with the hag.")
+                    new DialogSnippet("Wisp", "The Eyeball said the frog loves music. We should speak to Hag, she may be able to help.")
                 };
                 break;
             case 4:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Wisp", "You have the flute, go play for the frog.")
+                    new DialogSnippet("Wisp", "Use the flute the Hag gave you catch the Eyeball's frog.")
                 };
                 break;
             case 5:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Wisp", "Take the from back to the eyeball so we can go North.")
+                    new DialogSnippet("Wisp", "We caught the frog! We should return him to the Eyeball.")
                 };
                 break;
             case 6:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Wisp", "Make your way North.")
+                    new DialogSnippet("Wisp", "The path is clear for us to continue.")
                 };
                 break;
         }
@@ -210,38 +212,40 @@ public class LevelTwoPlayer : MonoBehaviour
             case 0:
                 state = 1;
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Hag", "Head North to get home.")
+                    new DialogSnippet("Hag", "The path home lies to the north, but you may find obstacles on your journey.")
                 };
                 break;
             case 1:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Hag", "Head North to get home.")
+                    new DialogSnippet("Hag", "Head north if home is what you seek.")
                 };
                 break;
             case 2:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Hag", "There's an eyeball blocking the way? Better retrieve his frog.")
+                    new DialogSnippet("Hag", "The Eyeball lost his frog again and is blocking the way?."),
+                    new DialogSnippet("Hag", "Well you may have to catch it yourself if you want to return home.")
                 };
                 break;
             case 3:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Hag", "The frog enjoys music? Well here, take my flute.")
+                    new DialogSnippet("Hag", "So the frog enjoys music? I have just the thing!"),
+                    new DialogSnippet("Hag", "Take this flute and play it for the frog.")
                 };
                 state = 4;
                 break;
             case 4:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Hag", "Go play the flute for the frog.")
+                    new DialogSnippet("Hag", "Play the flute for the frog to lure him back.")
                 };
                 break;
             case 5:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Hag", "Return the frog to the eyeball and make your way North.")
+                    new DialogSnippet("Hag", "You caught the frog! Now be sure to return it to its rightful owner.")
                 };
                 break;
             case 6:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Hag", "Make your way North.")
+                    new DialogSnippet("Hag", "The path is clear, head north to return home.")
                 };
                 break;
         }
@@ -262,7 +266,7 @@ public class LevelTwoPlayer : MonoBehaviour
         {
             case 0:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Eyeball", "Go Away.")
+                    new DialogSnippet("Eyeball", "Go away. I'm not in the mood to deal with strangers.")
                 };
                 dialog.StartDialog(snippets);
                 break;
@@ -277,7 +281,7 @@ public class LevelTwoPlayer : MonoBehaviour
                 break;
             case 2:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Eyeball", "Do you have my frog yet?"),
+                    new DialogSnippet("Eyeball", "Have you retrieved Froggy yet?"),
                     new DialogSnippet("Kid", "Not yet."),
                     new DialogSnippet("Eyeball", "Well hurry up would you?")
                 };
@@ -293,8 +297,8 @@ public class LevelTwoPlayer : MonoBehaviour
                 break;
             case 4:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Eyeball", "Do you have my frog yet?"),
-                    new DialogSnippet("Kid", "Not yet."),
+                    new DialogSnippet("Eyeball", "Where's Froggy?"),
+                    new DialogSnippet("Kid", "We haven't got him yet."),
                     new DialogSnippet("Eyeball", "Well hurry up would you?")
                 };
                 dialog.StartDialog(snippets);
@@ -302,8 +306,8 @@ public class LevelTwoPlayer : MonoBehaviour
             case 5:
                 snippets = new DialogSnippet[]{
                     new DialogSnippet("Eyeball", "You found my frog! Thank you!"),
-                    new DialogSnippet("Eyeball", "Oh no! Fire Spirit!"),
                     new DialogSnippet("Fire Spirit", "Bwahahahahahahahahahahahahahahahahahaha"),
+                    new DialogSnippet("Eyeball", "Oh no! It's the Fire Spirit!"),
                     new DialogSnippet("Fire Spirit", "Your power is now mine!"),
                     new DialogSnippet("Fire Spirit", "Mwahahaha!")
                 };

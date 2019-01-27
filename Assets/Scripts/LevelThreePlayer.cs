@@ -109,7 +109,7 @@ public class LevelThreePlayer : MonoBehaviour
         DialogSnippet[] snippets = new DialogSnippet[] {
             new DialogSnippet("Eyeball", "You did it! You saved us, even Froggy!"),
             new DialogSnippet("Frog", "Ribbit"),
-            new DialogSnippet("Hag", "Thank you child, we are eternally grateful?"),
+            new DialogSnippet("Hag", "Thank you child, we are eternally grateful."),
             new DialogSnippet("Kid", "Did I do good? Do I get to go home?"),
             new DialogSnippet("Hag", "Yes child, go home.")
         };

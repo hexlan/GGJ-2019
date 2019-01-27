@@ -23,6 +23,7 @@ TagManager:
   - Dialog_3
   - Begining_Dialog
   - Barrier_Down
+  - Flute
   layers:
   - Default
   - TransparentFX

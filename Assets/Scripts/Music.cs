@@ -11,6 +11,19 @@ public class Music : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        var flute = GameObject.FindGameObjectWithTag("Flute");
+
+        if(flute && flute.GetComponent<AudioSource>().isPlaying)
+        {
+            _audioSource.mute = true;
+        } else
+        {
+            _audioSource.mute = false;
+        }
+    }
+
     public void PlayMusic()
     {
         if (_audioSource.isPlaying) return;
