@@ -23,7 +23,6 @@ public class LevelOnePlayer : MonoBehaviour
 
             DialogSnippet[] dialog =
             {
-                new DialogSnippet("", "*The sounds of the surrounding forest echo through the dusk filled sky.*"),
                 new DialogSnippet("Kid", "Oooh, mabey I can find a cool bug tonight!"),
                 new DialogSnippet("Kid", "I should look arround!")
             };
