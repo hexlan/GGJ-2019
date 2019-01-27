@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class MouseManager : MonoBehaviour
 {
 
-    public LayerMask clickableLayer;
+    public LayerMask triggers;
 
     public EventVector3 OnClickEnvironment;
 
