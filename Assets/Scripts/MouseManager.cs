@@ -8,7 +8,7 @@ public class MouseManager : MonoBehaviour
 
     public LayerMask triggers;
     public EventVector3 OnClickEnvironment;
-    private bool disabled = false;
+    public bool disabled = false;
 
     public bool wisp = false;
     public bool hag = false;

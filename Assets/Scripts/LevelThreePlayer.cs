@@ -8,7 +8,11 @@ public class LevelThreePlayer : MonoBehaviour
     public DialogManager dialog;
     public MouseManager mouse;
 
+    public GameObject lantern;
+
     int state = 0;
+
+    bool suckFire = false;
 
     void OnTriggerEnter(Collider other)
     {
@@ -30,10 +34,12 @@ public class LevelThreePlayer : MonoBehaviour
         }
         else if (other.gameObject.tag == "End")
         {
-            var lookPos = GameObject.FindGameObjectWithTag("Wisp").transform.position - transform.position;
+            GetComponent<NavMeshAgent>().Stop();
+            transform.position = new Vector3(-56, 4.5f, 12);
+
+            var lookPos = GameObject.FindGameObjectWithTag("FireSpirit").transform.position - transform.position;
             lookPos.y = 0;
             transform.rotation = Quaternion.LookRotation(lookPos);
-
 
             DialogSnippet[] snippet =
             {
@@ -41,12 +47,18 @@ public class LevelThreePlayer : MonoBehaviour
             };
 
             dialog.StartDialog(snippet);
+            suckFire = true;
         }
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
+        if(suckFire && !mouse.disabled)
+        {
+            GameObject.Instantiate(lantern, new Vector3(-57f, 5, 13f), Quaternion.Euler(-90, 0, -53));
+        }
+
         if (!GetComponent<NavMeshAgent>().pathPending)
         {
             if (GetComponent<NavMeshAgent>().remainingDistance <= GetComponent<NavMeshAgent>().stoppingDistance)
@@ -74,7 +86,7 @@ public class LevelThreePlayer : MonoBehaviour
             }
         }
     }
-    
+
     private void mushroom()
     {
         var lookPos = GameObject.FindGameObjectWithTag("Mushroom").transform.position - transform.position;

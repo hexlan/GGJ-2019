@@ -18,6 +18,7 @@ TagManager:
   - Lantern
   - Mushroom
   - PathBlocker
+  - FireSpirit
   layers:
   - Default
   - TransparentFX

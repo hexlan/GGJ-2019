@@ -8,6 +8,8 @@ public class LevelTwoPlayer : MonoBehaviour
     public DialogManager dialog;
     public MouseManager mouse;
 
+    public GameObject firspirt;
+
     int state = 0;
     // 0 - Talk to Hag
     // 1 - Talk to Eyeball
@@ -16,6 +18,8 @@ public class LevelTwoPlayer : MonoBehaviour
     // 4 - Got Flute
     // 5 - Got Frog
     // 6 - Continue Onwards
+
+    bool removeEyeSore = false;
 
     bool frogIsOnBeach = true;
 
@@ -37,9 +41,24 @@ public class LevelTwoPlayer : MonoBehaviour
         dialog.StartDialog(snippets);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "End")
+        {
+            var levelChanger = GameObject.FindGameObjectWithTag("LevelChanger");
+            levelChanger.GetComponent<LevelChanger>().FadeToLevel(2);
+        }
+    }
+
+        // Update is called once per frame
+        void Update()
+    {
+        if(removeEyeSore && !mouse.disabled)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Eyeball"));
+            Destroy(GameObject.FindGameObjectWithTag("FireSpirit"));
+        }
+
         var frogPosition = new Vector3(7.7f, 11.59f, 9.01f);
 
         var distance = Vector3.Distance(transform.position, frogPosition);
@@ -218,6 +237,7 @@ public class LevelTwoPlayer : MonoBehaviour
                 snippets = new DialogSnippet[]{
                     new DialogSnippet("Eyeball", "Go Away.")
                 };
+                dialog.StartDialog(snippets);
                 break;
             case 1:
                 snippets = new DialogSnippet[]{
@@ -225,6 +245,7 @@ public class LevelTwoPlayer : MonoBehaviour
                     new DialogSnippet("Boy", "I'll get him back for you."),
                     new DialogSnippet("Eyeball", "You'd do that? He's shy, but will come to you if you play music.")
                 };
+                dialog.StartDialog(snippets);
                 state = 2;
                 break;
             case 2:
@@ -233,6 +254,7 @@ public class LevelTwoPlayer : MonoBehaviour
                     new DialogSnippet("Boy", "Not yet."),
                     new DialogSnippet("Eyeball", "Well hurry up would you?")
                 };
+                dialog.StartDialog(snippets);
                 break;
             case 3:
                 snippets = new DialogSnippet[]{
@@ -240,6 +262,7 @@ public class LevelTwoPlayer : MonoBehaviour
                     new DialogSnippet("Boy", "Not yet."),
                     new DialogSnippet("Eyeball", "Well hurry up would you?")
                 };
+                dialog.StartDialog(snippets);
                 break;
             case 4:
                 snippets = new DialogSnippet[]{
@@ -247,16 +270,25 @@ public class LevelTwoPlayer : MonoBehaviour
                     new DialogSnippet("Boy", "Not yet."),
                     new DialogSnippet("Eyeball", "Well hurry up would you?")
                 };
+                dialog.StartDialog(snippets);
                 break;
             case 5:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Eyeball", "You found my frog! Thank you!")
+                    new DialogSnippet("Eyeball", "You found my frog! Thank you!"),
+                    new DialogSnippet("Eyeball", "Oh no! Fir Spirt"),
+                    new DialogSnippet("Fir Spirt", "Bwahahahahahahahahahahahahahahahahahaha")
                 };
                 state = 6;
+
+                GameObject.FindGameObjectWithTag("PathBlocker").SetActive(false);
+                GameObject.Instantiate(firspirt, new Vector3(-20, 11, 27), Quaternion.Euler(0, 145, 0));
+                dialog.StartDialog(snippets);
+                removeEyeSore = true;
+                break;
+            default:
+                dialog.StartDialog(snippets);
                 break;
         }
-
-        dialog.StartDialog(snippets);
 
         mouse.eyeball = false;
     }
