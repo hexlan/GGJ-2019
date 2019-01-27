@@ -43,16 +43,19 @@ public class LevelTwoPlayer : MonoBehaviour
         var frogPosition = new Vector3(7.7f, 11.59f, 9.01f);
 
         var distance = Vector3.Distance(transform.position, frogPosition);
-        if(distance < 4 && frogIsOnBeach)
+        if (state < 5)
         {
-            GameObject.FindGameObjectWithTag("Frog").GetComponent<Animator>().Play("FrogJump");
-            frogIsOnBeach = false;
-            if(state == 2) { state = 3; }
-        }
-        else if (distance > 4 && !frogIsOnBeach)
-        {
-            GameObject.FindGameObjectWithTag("Frog").GetComponent<Animator>().Play("FrogReverseJump");
-            frogIsOnBeach = true;
+            if (distance < 4 && frogIsOnBeach)
+            {
+                GameObject.FindGameObjectWithTag("Frog").GetComponent<Animator>().Play("FrogJump");
+                frogIsOnBeach = false;
+                if (state == 2) { state = 3; }
+            }
+            else if (distance > 4 && !frogIsOnBeach)
+            {
+                GameObject.FindGameObjectWithTag("Frog").GetComponent<Animator>().Play("FrogReverseJump");
+                frogIsOnBeach = true;
+            }
         }
 
         if (!GetComponent<NavMeshAgent>().pathPending)
@@ -75,7 +78,28 @@ public class LevelTwoPlayer : MonoBehaviour
                     }
                     else if (mouse.frog)
                     {
-                        
+                        var lookPos = GameObject.FindGameObjectWithTag("Frog").transform.position - transform.position;
+                        lookPos.y = 0;
+                        transform.rotation = Quaternion.LookRotation(lookPos);
+
+                        DialogSnippet[] snippets = new DialogSnippet[] { new DialogSnippet("Frog", "Ribbit") };
+                        if (state == 4)
+                        {
+                            snippets = new DialogSnippet[]{
+                                new DialogSnippet("Boy", "*Plays Flute*"),
+                                new DialogSnippet("Frog", "Ribbit Ribbit")
+                            };
+
+                            dialog.StartDialog(snippets);
+                            Destroy(GameObject.FindGameObjectWithTag("Frog"));
+                            state = 5;
+                        }
+                        else
+                        {
+                            dialog.StartDialog(snippets);
+                        }
+
+                        mouse.frog = false;
                     }
                 }
             }
