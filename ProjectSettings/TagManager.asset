@@ -15,6 +15,9 @@ TagManager:
   - Hag
   - Eyeball
   - Frog
+  - Lantern
+  - Mushroom
+  - PathBlocker
   layers:
   - Default
   - TransparentFX
