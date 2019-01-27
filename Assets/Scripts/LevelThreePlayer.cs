@@ -28,7 +28,11 @@ public class LevelThreePlayer : MonoBehaviour
 
             DialogSnippet[] snippet =
             {
-                new DialogSnippet("Wisp", "Last time to talk before you go in there...")
+                new DialogSnippet("Wisp", "This is where I must leave, for spirits cannot pass through the spirit gate."),
+                new DialogSnippet("Wisp", "Remember all you need to do is pass through the gate and use the latern."),
+                new DialogSnippet("Kid", "And then I'll be home?"),
+                new DialogSnippet("Wisp", "And you'll be home soon enough... we all will be."),
+                new DialogSnippet("Kid", "Goodbye Mr. Wisp.")
             };
 
             dialog.StartDialog(snippet);
@@ -41,7 +45,11 @@ public class LevelThreePlayer : MonoBehaviour
 
             DialogSnippet[] snippet =
             {
-                new DialogSnippet("Boy", "I is winner...")
+                new DialogSnippet("Kid", "Ahhhhh!"),
+                new DialogSnippet("Fire Spirit", "Bwahahaha. What meek creature is it that wanders into my den?"),
+                new DialogSnippet("Fire Spirit", "A human child? Is this the best those lowly spirits can muster?"),
+                new DialogSnippet("Kid", "Mr. Wisp said I just need to take use the lantern to get home. Here we go?"),
+                new DialogSnippet("Fire Spirit", "The Lantern?! NO!")
             };
 
             dialog.StartDialog(snippet);
@@ -84,7 +92,11 @@ public class LevelThreePlayer : MonoBehaviour
                         lookPos.y = 0;
                         transform.rotation = Quaternion.LookRotation(lookPos);
 
-                        DialogSnippet[] snippets = new DialogSnippet[] { new DialogSnippet("Wisp", "You found the lantern...") };
+                        DialogSnippet[] snippets = new DialogSnippet[] {
+                            new DialogSnippet("Wisp", "You did it! You found the fire lantern. You are almost home. All that is left is passing through the spirit gate."),
+                            new DialogSnippet("Kid", "And that is all I have to do?"),
+                            new DialogSnippet("Wisp", "Yes, yes. Let's hurry now.")
+                        };
                         dialog.StartDialog(snippets);
                     }
                 }
@@ -94,7 +106,13 @@ public class LevelThreePlayer : MonoBehaviour
 
     public void finalWords()
     {
-        DialogSnippet[] snippets = new DialogSnippet[] { new DialogSnippet("Wisp", "You have won!") };
+        DialogSnippet[] snippets = new DialogSnippet[] {
+            new DialogSnippet("Eyeball", "You did it! You saved us, even Froggy!"),
+            new DialogSnippet("Frog", "Ribbit"),
+            new DialogSnippet("Hag", "Thank you child, we are eternally grateful?"),
+            new DialogSnippet("Kid", "Did I do good? Do I get to go home?"),
+            new DialogSnippet("Hag", "Yes child, go home.")
+        };
         dialog.StartDialog(snippets);
         end = true;
     }
@@ -110,12 +128,15 @@ public class LevelThreePlayer : MonoBehaviour
         {
             case 0:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Mushroom", "No heading this way without the lantern of light.")
+                    new DialogSnippet("Mushroom", "The only thing in this direction is the Fire Spirit's den. Are you sure you want to continue?"),
+                    new DialogSnippet("Wisp", "We should look for the fire lantern before we go this way")
                 };
                 break;
             case 1:
                 snippets = new DialogSnippet[]{
-                    new DialogSnippet("Mushroom", "You found the lantern, go ahead.")
+                    new DialogSnippet("Mushroom", "The only thing in this direc..."),
+                    new DialogSnippet("Wisp", "Is the Fire Spirit's den, we know. But we have the fire lantern."),
+                    new DialogSnippet("Mushroom", "Then go if you must. And take care."),
                 };
 
                 GameObject.FindGameObjectWithTag("PathBlocker").SetActive(false);
