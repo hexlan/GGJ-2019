@@ -13,6 +13,8 @@ TagManager:
   - Dialog_2
   - Interactable
   - Hag
+  - Eyeball
+  - Frog
   layers:
   - Default
   - TransparentFX
