@@ -15,7 +15,7 @@ public class LevelOnePlayer : MonoBehaviour
         else if (other.gameObject.tag == "End")
         {
             var levelChanger = GameObject.FindGameObjectWithTag("LevelChanger");
-            levelChanger.GetComponent<LevelChanger>().FadeToLevel(1);
+            levelChanger.GetComponent<LevelChanger>().FadeToLevel(2);
         }
         else if (other.gameObject.tag == "Begining_Dialog")
         {

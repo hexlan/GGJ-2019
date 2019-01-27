@@ -61,7 +61,7 @@ public class LevelThreePlayer : MonoBehaviour
         else if(end && !mouse.disabled)
         {
             var levelChanger = GameObject.FindGameObjectWithTag("LevelChanger");
-            levelChanger.GetComponent<LevelChanger>().FadeToLevel(3);
+            levelChanger.GetComponent<LevelChanger>().FadeToLevel(4);
         }
 
         if (!GetComponent<NavMeshAgent>().pathPending)
