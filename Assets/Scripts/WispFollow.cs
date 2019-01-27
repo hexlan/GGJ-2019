@@ -14,9 +14,9 @@ public class WispFollow : MonoBehaviour
         var distance = heading.magnitude;
         var direction = heading / distance;
 
-        if (distance > 8)
+        if (distance > 6)
         {
-            OnClickEnvironment.Invoke(transform.position + direction * 7);
+            OnClickEnvironment.Invoke(transform.position + direction * 5);
         }
     }
 }
