@@ -26,16 +26,28 @@ public class LevelTwoPlayer : MonoBehaviour
     private void Start()
     {
         DialogSnippet[] snippets = {
-            new DialogSnippet("Boy", "I'm lost!"),
-            new DialogSnippet("???", "Hi lost, I'm wisp"),
-            new DialogSnippet("Boy", "Hardee-har-har"),
-            new DialogSnippet("???", "Dialog"),
-            new DialogSnippet("Boy", "Dialog"),
-            new DialogSnippet("???", "Dialog"),
-            new DialogSnippet("Boy", "Dialog"),
-            new DialogSnippet("???", "Dialog"),
-            new DialogSnippet("Boy", "Dialog"),
-            new DialogSnippet("???", "Go speak with the hag, she'll know what to do.")
+            new DialogSnippet("Kid", "Finally caught up to you!"),
+            new DialogSnippet("Kid", "..."),
+            new DialogSnippet("Kid", "Wait wheres the path?"),
+            new DialogSnippet("Kid", "Oh no! I'm lost!"),
+            new DialogSnippet("???", "No need to worry."),
+            new DialogSnippet("Kid", "!"),
+            new DialogSnippet("Kid", "You can speeak?!"),
+            new DialogSnippet("???", "Of course!"),
+            new DialogSnippet("???", "Any spirt can."),
+            new DialogSnippet("Kid", "Spirit?"),
+            new DialogSnippet("Spirit", "Yep!"),
+            new DialogSnippet("Spirit", "You've found you're way to one the homes of the spirits."),
+            new DialogSnippet("Spirit", "The Whispering Woods."),
+            new DialogSnippet("Kid", "I'm sorry spirit."),
+            new DialogSnippet("Kid", "But I shouldn't be visitning someone elses home now."),
+            new DialogSnippet("Kid", "I wasn't supposed to leave my home!"),
+            new DialogSnippet("Spirit", "Well mabey I can help."),
+            new DialogSnippet("Spirit", "You can't leave the same way you came."),
+            new DialogSnippet("Spirit", "However, I think I know a spirit that can find the path you need."),
+            new DialogSnippet("Spirit", "Lets go find the Hag!"),
+            new DialogSnippet("Spirit", "Oh!"),
+            new DialogSnippet("Wisp", "By the way I'm Wisp!")
         };
 
         dialog.StartDialog(snippets);
@@ -275,8 +287,8 @@ public class LevelTwoPlayer : MonoBehaviour
             case 5:
                 snippets = new DialogSnippet[]{
                     new DialogSnippet("Eyeball", "You found my frog! Thank you!"),
-                    new DialogSnippet("Eyeball", "Oh no! Fir Spirt"),
-                    new DialogSnippet("Fir Spirt", "Bwahahahahahahahahahahahahahahahahahaha")
+                    new DialogSnippet("Eyeball", "Oh no! Fire Spirit!"),
+                    new DialogSnippet("Fire Spirit", "Bwahahahahahahahahahahahahahahahahahaha")
                 };
                 state = 6;
 
