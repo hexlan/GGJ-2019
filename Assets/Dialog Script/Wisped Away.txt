@@ -43,13 +43,15 @@ Wisp:	Well mabey I can help.
 		
 Eye:	Thanks you for finding my frog!
 Eye:    Oh no! Fire Spirit!
-Fire:   Your barrier power is now mine! 
-		Mwa hahaha!
+Fire:   Your power is now mine! 
+		Mwahahaha!
 		
 Wisp:	How terrible!
 		Although this may be fortunate for you.
 Boy:	Why would that be?
-Wisp:	There a lantern that can grant what the holder deasires.
-		however, it only works if it has enough power within.
-		If you capture that fire spirit it may reveal that path you need to head home.
+Wisp:	There is a lantern that can grant what the holder deasires.
+		However, it only works if it has enough power within.
+		If you capture that fire spirit it may reveal the path to lead you home.
 Boy:	Let's go find it then!
+
+*****
