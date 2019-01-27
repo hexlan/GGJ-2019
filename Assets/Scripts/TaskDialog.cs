@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-public class WispDialog : MonoBehaviour
+public class TaskDialog : MonoBehaviour
 {
     private ModalPanel modalPanel;
-    private readonly string[] dialogSequence = { "Hi", "How are you", "Glad you followed."};
+    private readonly string[] dialogSequence = { "Greetings", "Go north to continue.", "I saw a frog by the lake." };
     private bool isActive = true;
 
     private void Awake()
@@ -11,12 +11,12 @@ public class WispDialog : MonoBehaviour
         modalPanel = ModalPanel.Instance();
     }
 
-    public void Wisp()
+    public void Task()
     {
         if (isActive)
         {
             isActive = false;
-            modalPanel.SetDialog("Wisp", dialogSequence);
+            modalPanel.SetDialog("Task Giver", dialogSequence);
         }
     }
 }
