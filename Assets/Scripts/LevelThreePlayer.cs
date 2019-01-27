@@ -13,6 +13,7 @@ public class LevelThreePlayer : MonoBehaviour
     int state = 0;
 
     bool suckFire = false;
+    bool end = false;
 
     void OnTriggerEnter(Collider other)
     {
@@ -34,9 +35,6 @@ public class LevelThreePlayer : MonoBehaviour
         }
         else if (other.gameObject.tag == "End")
         {
-            GetComponent<NavMeshAgent>().Stop();
-            transform.position = new Vector3(-56, 4.5f, 12);
-
             var lookPos = GameObject.FindGameObjectWithTag("FireSpirit").transform.position - transform.position;
             lookPos.y = 0;
             transform.rotation = Quaternion.LookRotation(lookPos);
@@ -56,7 +54,14 @@ public class LevelThreePlayer : MonoBehaviour
     {
         if(suckFire && !mouse.disabled)
         {
-            GameObject.Instantiate(lantern, new Vector3(-57f, 5, 13f), Quaternion.Euler(-90, 0, -53));
+            GameObject.Instantiate(lantern, transform.position + new Vector3(-1f, 0.5f, 1f), Quaternion.Euler(-90, 0, -53));
+            suckFire = false;
+            GameObject.FindGameObjectWithTag("FireSpirit").GetComponent<FireDeath>().start = true;
+        }
+        else if(end && !mouse.disabled)
+        {
+            var levelChanger = GameObject.FindGameObjectWithTag("LevelChanger");
+            levelChanger.GetComponent<LevelChanger>().FadeToLevel(3);
         }
 
         if (!GetComponent<NavMeshAgent>().pathPending)
@@ -71,7 +76,7 @@ public class LevelThreePlayer : MonoBehaviour
                     }
                     else if (mouse.lantern)
                     {
-                        GameObject.FindGameObjectWithTag("Lantern").SetActive(false);
+                        Destroy(GameObject.FindGameObjectWithTag("Lantern"));
                         state = 1;
                         mouse.lantern = false;
 
@@ -85,6 +90,13 @@ public class LevelThreePlayer : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void finalWords()
+    {
+        DialogSnippet[] snippets = new DialogSnippet[] { new DialogSnippet("Wisp", "You have won!") };
+        dialog.StartDialog(snippets);
+        end = true;
     }
 
     private void mushroom()

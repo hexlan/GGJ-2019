@@ -19,6 +19,7 @@ TagManager:
   - Mushroom
   - PathBlocker
   - FireSpirit
+  - Cage
   layers:
   - Default
   - TransparentFX
