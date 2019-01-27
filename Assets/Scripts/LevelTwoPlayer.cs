@@ -46,7 +46,7 @@ public class LevelTwoPlayer : MonoBehaviour
         if (other.gameObject.tag == "End")
         {
             var levelChanger = GameObject.FindGameObjectWithTag("LevelChanger");
-            levelChanger.GetComponent<LevelChanger>().FadeToLevel(2);
+            levelChanger.GetComponent<LevelChanger>().FadeToLevel(3);
         }
     }
 
