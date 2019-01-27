@@ -19,6 +19,8 @@ TagManager:
   - Mushroom
   - PathBlocker
   - FireSpirit
+  - Dialog_3
+  - Begining_Dialog
   layers:
   - Default
   - TransparentFX
