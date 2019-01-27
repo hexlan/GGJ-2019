@@ -17,8 +17,8 @@ public class WispDialog : MonoBehaviour
     {
         if (isActive)
         {
-            modalPanel.SetDialog("Wisp", dialogSequence);
             isActive = false;
+            modalPanel.SetDialog("Wisp", dialogSequence);
         }
     }
 }

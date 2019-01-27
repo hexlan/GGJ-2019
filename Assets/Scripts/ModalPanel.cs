@@ -31,7 +31,7 @@ public class ModalPanel : MonoBehaviour
     {
         if (modalPanelObject.activeInHierarchy)
         {
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(1))
             {
                 if (isFinished)
                 {
